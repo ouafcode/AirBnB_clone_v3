@@ -10,7 +10,6 @@ from flasgger.utils import swag_from
 
 @app_views.route("/states/<state_id>/cities", methods=["GET"],
                  strict_slashes=False)
-@swag_from('documentation/city/city_state.yml', methods=['GET'])
 def city_state(state_id):
     """return city objects by state"""
     state = storage.get(State, state_id)
@@ -21,7 +20,6 @@ def city_state(state_id):
 
 @app_views.route("/cities/<city_id>", methods=["GET"],
                  strict_slashes=False)
-@swag_from('documentation/city/get_city.yml', methods=['GET'])
 def show_city(city_id):
     """return a City object"""
     cities = storage.get(City, city_id)
@@ -32,7 +30,6 @@ def show_city(city_id):
 
 @app_views.route("/cities/<city_id>", methods=["DELETE"],
                  strict_slashes=False)
-@swag_from('documentation/city/del_city.yml', methods=['DELETE'])
 def del_city(city_id):
     """delete a City object"""
     cities = storage.get(City, city_id)
@@ -45,7 +42,6 @@ def del_city(city_id):
 
 @app_views.route("/states/<state_id>/cities", methods=["POST"],
                  strict_slashes=False)
-@swag_from('documentation/city/post_city.yml', methods=['POST'])
 def insert_cities(state_id):
     """insert a City object"""
     state = storage.get(State, state_id)
@@ -64,7 +60,6 @@ def insert_cities(state_id):
 
 @app_views.route("/cities/<city_id>", methods=["PUT"],
                  strict_slashes=False)
-@swag_from('documentation/city/put_city.yml', methods=['PUT'])
 def update_cities(city_id):
     """update a City object"""
     city = storage.get(City, city_id)
