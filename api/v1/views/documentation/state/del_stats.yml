@@ -1,4 +1,4 @@
-    Delete a state based on the id
+    Delete a state by id
     ---
     tags:
       - States
