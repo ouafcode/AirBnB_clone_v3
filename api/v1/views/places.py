@@ -124,7 +124,7 @@ def update_place(place_id):
     resp = request.get_json()
     if type(resp) != dict:
         abort(400, description="Not a JSON")
-    for k, v in res.items():
+    for k, v in resp.items():
         if k not in ["id", "user_id", "city_id", "created_at", "updated_at"]:
             setattr(place, k, v)
     storage.save()
