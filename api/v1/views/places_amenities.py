@@ -13,8 +13,8 @@ mode = getenv("HBNB_TYPE_STORAGE")
 
 @app_views.route("/places/<place_id>/amenities", methods=["GET"],
                  strict_slashes=False)
-def amenities_from_place(place_id):
-    """Get all amenities of a place object"""
+def amenity_place(place_id):
+    """place object"""
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
@@ -28,8 +28,8 @@ def amenities_from_place(place_id):
 
 @app_views.route("/places/<place_id>/amenities/<amenity_id>",
                  methods=["DELETE"], strict_slashes=False)
-def delete_amenity_from_place(place_id, amenity_id):
-    """Delete a Amenity object by its id from a Place object"""
+def del_amenity(place_id, amenity_id):
+    """Delete a Amenity object"""
     place = storage.get(Place, place_id)
     amenity = storage.get(Amenity, amenity_id)
     if place is None or amenity is None:
@@ -48,8 +48,8 @@ def delete_amenity_from_place(place_id, amenity_id):
 
 @app_views.route("places/<place_id>/amenities/<amenity_id>", methods=["POST"],
                  strict_slashes=False)
-def insert_amenity_in_place(place_id, amenity_id):
-    """Insert new amenity object into Place object"""
+def insert_amenity(place_id, amenity_id):
+    """Insert new amenity"""
     place = storage.get(Place, place_id)
     amenity = storage.get(Amenity, amenity_id)
     if place is None or amenity is None:
