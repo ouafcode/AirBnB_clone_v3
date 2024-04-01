@@ -4,12 +4,14 @@ from models import storage
 from models.amenity import Amenity
 from api.v1.views import app_views
 from flask import jsonify, abort, request
+from flasgger.utils import swag_from
 
 
 @app_views.route('/amenities', methods=['GET'],
                  strict_slashes=False)
-def amenities():
-    """Get all Amenities"""
+@swag_from('documentation/amenity/all_amenity.yml')
+def amenity():
+    """Get amenity"""
     resp = [
         amenity.to_dict() for amenity in storage.all(Amenity).values()
     ]
@@ -18,7 +20,8 @@ def amenities():
 
 @app_views.route('/amenities/<amenity_id>', methods=['GET'],
                  strict_slashes=False)
-def amenities_by_id(amenity_id):
+@swag_from('documentation/amenity/get_amenity.yml', methods=['GET'])
+def amenity_id(amenity_id):
     """Get Amenities by id"""
     resp = storage.get(Amenity, amenity_id)
     if resp is None:
@@ -28,8 +31,9 @@ def amenities_by_id(amenity_id):
 
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
                  strict_slashes=False)
-def delete_amenities(amenity_id):
-    """Delete Amenities"""
+@swag_from('documentation/amenity/del_amenity.yml', methods=['DELETE'])
+def del_amenity(amenity_id):
+    """Delete Amenity"""
     amenity = storage.get(Amenity, amenity_id)
     if amenity is None:
         abort(404)
@@ -40,8 +44,9 @@ def delete_amenities(amenity_id):
 
 @app_views.route('/amenities', methods=['POST'],
                  strict_slashes=False)
-def insert_amenities():
-    """Insert Amenities"""
+@swag_from('documentation/amenity/post_amenity.yml', methods=['POST'])
+def insert_amenity():
+    """Insert Amenity"""
     tr = request.get_json()
     if type(tr) != dict:
         return abort(400, {'message': 'Not a JSON'})
@@ -54,8 +59,9 @@ def insert_amenities():
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'],
                  strict_slashes=False)
-def update_amenities(amenity_id):
-    """Update Amenities"""
+@swag_from('documentation/amenity/put_amenity.yml', methods=['PUT'])
+def update_amenity(amenity_id):
+    """Update Amenity"""
     amenity = storage.get(Amenity, amenity_id)
     if amenity is None:
         abort(404)

@@ -27,7 +27,7 @@ def get_stats(state_id):
 
 @app_views.route('/states/<path:state_id>', methods=['DELETE'],
                  strict_slashes=False)
-@swag_from('documentation/state/delete_stats.yml', methods=['DELETE'])
+@swag_from('documentation/state/del_stats.yml', methods=['DELETE'])
 def delete_stats(state_id):
     if state_id is None:
         abort(404)
