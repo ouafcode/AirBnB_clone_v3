@@ -80,7 +80,7 @@ def upd_review(review_id):
     resp = request.get_json()
     if type(resp) != dict:
         abort(400, description="Not a JSON")
-    for k, val in resp.items():
+    for k, v in resp.items():
         if k not in ["id", "user_id", "place_id",
                      "created_at", "updated_at"]:
             setattr(review, k, v)
