@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""New view for the link between Place objects and Amenity objects"""
+"""New view for the link between Place and Amenity"""
 from models.place import Place
 from models.amenity import Amenity
 from api.v1.views import app_views
