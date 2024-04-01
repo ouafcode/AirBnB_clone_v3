@@ -8,7 +8,6 @@ from flasgger.utils import swag_from
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
-@swag_from('documentation/state/get_stats.yml', methods=['GET'])
 def get_states():
     my_dict = []
     for value in storage.all(State).values():
@@ -17,7 +16,6 @@ def get_states():
 
 
 @app_views.route('/states/<path:state_id>')
-@swag_from('documentation/state/get_stats.yml', methods=['GET'])
 def get_stats(state_id):
     state = storage.get(State, state_id)
     if state is None:
@@ -27,7 +25,6 @@ def get_stats(state_id):
 
 @app_views.route('/states/<path:state_id>', methods=['DELETE'],
                  strict_slashes=False)
-@swag_from('documentation/state/del_stats.yml', methods=['DELETE'])
 def delete_stats(state_id):
     if state_id is None:
         abort(404)
@@ -41,7 +38,6 @@ def delete_stats(state_id):
 
 @app_views.route('/states', methods=['POST'],
                  strict_slashes=False)
-@swag_from('documentation/state/post_stats.yml', methods=['POST'])
 def post_stats():
     resp = request.get_json()
     if type(resp) != dict:
@@ -55,7 +51,6 @@ def post_stats():
 
 @app_views.route('/states/<path:state_id>', methods=['PUT'],
                  strict_slashes=False)
-@swag_from('documentation/state/put_stats.yml', methods=['PUT'])
 def put_stats(state_id):
     state = storage.get(State, state_id)
     if state is None:
