@@ -59,7 +59,7 @@ def inst_place(city_id):
         abort(400, description="Not a JSON")
     if not resp.get("user_id"):
         abort(400, description="Missing user_id")
-    users = storage.get(User, res.get("user_id"))
+    users = storage.get(User, resp.get("user_id"))
     if users is None:
         abort(404)
     if not resp.get("name"):
